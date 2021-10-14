@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AWSConfig {
+    private String DAX_ENDPOINT = "mydaxcluster.mxyuv9.dax-clusters.ap-southeast-1.amazonaws.com:8111";
 
     @Value("${amazon.region}")
     private String awsRegion;
@@ -48,7 +49,7 @@ public class AWSConfig {
     @Bean
     public AmazonDynamoDB amazonDAX() {
         AmazonDaxClientBuilder daxClientBuilder = AmazonDaxClientBuilder.standard();
-        daxClientBuilder.withRegion(awsRegion).withEndpointConfiguration("mydaxcluster.mxyuv9.dax-clusters.ap-southeast-1.amazonaws.com:8111");
+        daxClientBuilder.withRegion(awsRegion).withEndpointConfiguration(DAX_ENDPOINT);
 
         return daxClientBuilder.build();
     }
